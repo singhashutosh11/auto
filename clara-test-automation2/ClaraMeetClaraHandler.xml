@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraMeetClaraHandler">
+	<test name="ClaraMeetClaraHandler">
+		<classes>
+			<class name="com.bravadohealth.automation.clara.validscenario.MeetClara" />
+			<class name="com.bravadohealth.automation.clara.validscenario.NonInstitutionalNomination" />
+			<class name="com.bravadohealth.automation.clara.invalidscenario.ErrorValidationDuringFacilitySetup"/>
+		</classes>
+	</test>
+</suite>

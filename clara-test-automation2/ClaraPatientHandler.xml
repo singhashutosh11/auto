@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraPatientHandler">
+	<test name="ClaraPatientHandler">
+		<classes>
+		    <!-- <class name="com.bravadohealth.automation.clara.validscenario.SearchPatientClara" /> --> 
+            <class name="com.bravadohealth.automation.clara.validscenario.AddPatient" />
+		    <class name="com.bravadohealth.automation.clara.validscenario.EditPatientClara" /> 
+		</classes>
+	</test>
+</suite>

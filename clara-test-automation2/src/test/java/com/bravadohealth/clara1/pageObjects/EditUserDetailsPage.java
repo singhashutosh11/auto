@@ -1,0 +1,187 @@
+package com.bravadohealth.clara1.pageObjects;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
+
+import com.bravadohealth.pageObjects.AbstractPage;
+import com.bravadohealth.pagedataset.InstitutionalPermissionGroups;
+import com.bravadohealth.pagedataset.Permission;
+import com.bravadohealth.pagedataset.PermissionGroup;
+import com.bravadohealth.pagedataset.PermissionGroups;
+
+import trial.keyStone.automation.PageDataProvider;
+import trial.keyStone.automation.WebOperation;
+
+public class EditUserDetailsPage extends AbstractPage {
+
+	public EditUserDetailsPage(WebOperation webOp, PageDataProvider dataProvider) {
+		super(webOp, dataProvider);
+	}
+	
+	By ManagePermissionsTab = By.xpath("//a[text()='Manage Permissions']");
+	By PermissionGroups = By.cssSelector("section.permission-group-list div.permission-group");
+	By PermissionGroupHeader = By.cssSelector("div.permission-group-header");
+	By PermissionElementsLabel = By.cssSelector("div.permission-group-line-item .permission label.permission-lable");
+	By PermissionElementsTooltipEl = By.cssSelector("div.permission-group-line-item .permission button.button.button-link");
+	
+	public EditUserDetailsPage switchToManagePermissionsTab() throws Exception {
+		webOp.waitTillAllCallsDoneUsingJS();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(ManagePermissionsTab));
+		webOp.driver().findElement(ManagePermissionsTab).click();
+		
+		//webOp.driver().findElement(By.xpath("//a[contains(@class,'sn-link ng-binding')][contains(text(),'Manage Permissions')]")).click();
+		
+		webOp.waitTillAllCallsDoneUsingJS();
+		return new EditUserDetailsPage(webOp, dataProvider);
+	}
+	
+	public EditUserDetailsPage verifyPermissionGroups() throws Exception {
+		webOp.waitTillAllCallsDoneUsingJS();
+		// Get all the permission groups. There should be 4 groups as of 14th March 2018.
+		List<WebElement> permissionGroupsEls = webOp.driver().findElements(PermissionGroups);
+		
+		// Check if number of permission groups is 4
+		boolean conditionNumberOfPermissionGroups = (permissionGroupsEls.size() == 4);
+		String conditionNumberOfPermissionGroupsSuccessMsg = "Number of permission groups is 4";
+		Assert.assertTrue(conditionNumberOfPermissionGroups, conditionNumberOfPermissionGroupsSuccessMsg);
+		logger.info(conditionNumberOfPermissionGroupsSuccessMsg);
+		
+		// Get the 1st permission group from the Excel
+		PermissionGroups permissionGroups = dataProvider.getPageData("permissionGroups");
+		PermissionGroup permissionGroup = permissionGroups.getPermissionGroup().get(0);
+		
+		List<String> institutionalPermissionNames = getInstitutionalPermissionNames();
+		
+		for (WebElement group: permissionGroupsEls) {
+			String groupHeaderElValue = group.findElement(PermissionGroupHeader).getText();
+			
+			// check if the Group Header Element's Value found in the App matches with the one fetched from Excel.
+			// if so, we need to perform the test only for that permission group and NOT others.
+			boolean conditionGroupHeaderValue = permissionGroup.getGroupHeader().equals(groupHeaderElValue);
+			if (conditionGroupHeaderValue) {
+				String conditionGroupHeaderValueSuccessMsg = "Group Header - \"" + groupHeaderElValue + "\" found.";
+				// Test the group header value against the one fetched from Excel
+				Assert.assertTrue(conditionGroupHeaderValue, conditionGroupHeaderValueSuccessMsg);
+				logger.info(conditionGroupHeaderValueSuccessMsg);
+				
+				List<Permission> permissionList = permissionGroup.getPermission();
+				List<WebElement> permissionElements = group.findElements(PermissionElementsLabel);
+				List<WebElement> permissionElementsTooltipEls = group.findElements(PermissionElementsTooltipEl);
+				
+				String conditionNumberOfPermissionsInTheGroupSuccessMsg = "The number of permissions in the group \"" + groupHeaderElValue + "\" are as expected and = " + permissionList.size();
+				// test the count of permissions App vs Excel
+				boolean conditionNumberOfPermissionsInTheGroup = permissionList.size() == permissionElements.size();
+				Assert.assertTrue(conditionNumberOfPermissionsInTheGroup, conditionNumberOfPermissionsInTheGroupSuccessMsg);
+				logger.info(conditionNumberOfPermissionsInTheGroupSuccessMsg);
+				
+				int count = 0;
+				for (int i = 0; i < permissionList.size(); i++) {
+					Permission thizPermission = permissionList.get(i);
+					WebElement thizPermissionLabelElement = permissionElements.get(i);
+					WebElement thizPermissionTooltipEl = permissionElementsTooltipEls.get(i);
+					String permissionName = thizPermission.getPermissionName();
+					boolean conditionMatchPermissionName = permissionName.equals(thizPermissionLabelElement.getText());
+					if (conditionMatchPermissionName) {
+						String conditionMatchPermissionNameSuccessMsg = "Permission Name - \"" + permissionName + "\" found.";
+						Assert.assertTrue(conditionMatchPermissionName, conditionMatchPermissionNameSuccessMsg);
+						logger.info(conditionMatchPermissionNameSuccessMsg);
+						// Increase the counter as permission name matched. This counter will be then tested against total number of permissions that should have been found.
+						count++;
+					}
+					
+					if (institutionalPermissionNames.size() > 0) {
+						boolean isInstitutionalPermissionPresent = institutionalPermissionNames.contains(permissionName);
+						String isInstitutionalPermissionPresentSuccessMsg = "The permissions doesn't contain institutional permissions.";
+						Assert.assertFalse(isInstitutionalPermissionPresent, isInstitutionalPermissionPresentSuccessMsg);
+						logger.info(isInstitutionalPermissionPresentSuccessMsg);
+					}
+					
+					thizPermissionTooltipEl.click();
+					webOp.waitTillAllCallsDoneUsingJS();
+					boolean isTooltipMatchingPermDescription = thizPermissionTooltipEl.getAttribute("uib-popover").trim().equals(thizPermission.getPermissionDescription().trim());
+					String isTooltipMatchingPermDescriptionSuccessMsg = "Permission Description matches the tooltip for Permission - \"" + permissionName + "\".";
+					Assert.assertTrue(isTooltipMatchingPermDescription, isTooltipMatchingPermDescriptionSuccessMsg);
+					logger.info(isTooltipMatchingPermDescriptionSuccessMsg);
+				}
+				
+				// test if all the permissions were found or not.
+				boolean conditionAllPermissionsFound = count == permissionElements.size();
+				String conditionAllPermissionsFoundSuccessMsg = "All permissions for group \"" + groupHeaderElValue + "\" were matched.";
+				Assert.assertTrue(conditionAllPermissionsFound, conditionAllPermissionsFoundSuccessMsg);
+				logger.info(conditionAllPermissionsFoundSuccessMsg);
+				break;
+			}
+		}
+		
+		webOp.waitTillAllCallsDoneUsingJS();
+		return new EditUserDetailsPage(webOp, dataProvider);
+	}
+
+	private List<String> getInstitutionalPermissionNames() {
+		InstitutionalPermissionGroups institutionalPermissionGroups = dataProvider.getPageData("institutionalPermissionGroups");
+		List<String> institutionalPermissionNames = new ArrayList<String>();
+		if (institutionalPermissionGroups != null) {
+			if (institutionalPermissionGroups.getPermissionGroup() != null 
+					&& institutionalPermissionGroups.getPermissionGroup().get(0) != null 
+					&& institutionalPermissionGroups.getPermissionGroup().get(0).getPermission() != null) {
+				
+				for(Permission p: institutionalPermissionGroups.getPermissionGroup().get(0).getPermission()) {
+					institutionalPermissionNames.add(p.getPermissionName());
+				}
+			}
+		}
+		return institutionalPermissionNames;
+	}
+	
+	public EditUserDetailsPage verifyIfPrescribingPermissionsHasEPCSPermissions() throws Exception {
+		webOp.waitTillAllCallsDoneUsingJS();
+		
+		// Get all the permission groups.
+		List<WebElement> permissionGroupsEls = webOp.driver().findElements(PermissionGroups);
+		
+		PermissionGroups permissionGroups = dataProvider.getPageData("permissionGroups");
+		PermissionGroup permissionGroup = permissionGroups.getPermissionGroup().get(0);
+		
+		for (WebElement group: permissionGroupsEls) {
+			String groupHeaderElValue = group.findElement(PermissionGroupHeader).getText();
+			// Only check the Permission group corresponding to "Prescribing"
+			boolean conditionGroupHeaderValue = permissionGroup.getGroupHeader().equals(groupHeaderElValue);
+			if (conditionGroupHeaderValue) {
+				
+				List<Permission> permissionList = permissionGroup.getPermission();
+				List<WebElement> permissionElements = group.findElements(PermissionElementsLabel);
+				
+				int count = 0;
+				for (int i = 0; i < permissionList.size(); i++) {
+					Permission thizPermission = permissionList.get(i);
+					WebElement thizPermissionLabelElement = permissionElements.get(i+1);
+					//System.out.println(thizPermissionLabelElement.getText());
+					String permissionName = thizPermission.getPermissionName();
+					boolean conditionMatchPermissionName = permissionName.equals(thizPermissionLabelElement.getText());
+					if (conditionMatchPermissionName) {
+						String conditionMatchPermissionNameSuccessMsg = "Permission Name - \"" + permissionName + "\" found.";
+						Assert.assertTrue(conditionMatchPermissionName, conditionMatchPermissionNameSuccessMsg);
+						logger.info(conditionMatchPermissionNameSuccessMsg);
+						// Increase the counter as permission name matched. This counter will be then tested against total number of permissions that should have been found.
+						count++;
+					}
+				}
+				
+				// test if all the permissions were found or not.
+				boolean conditionAllPermissionsFound = count == permissionList.size();
+				String conditionAllPermissionsFoundSuccessMsg = "All permissions for group \"" + groupHeaderElValue + "\" were matched.";
+				Assert.assertTrue(conditionAllPermissionsFound, conditionAllPermissionsFoundSuccessMsg);
+				logger.info(conditionAllPermissionsFoundSuccessMsg);
+				break;
+			}
+		}
+		
+		return new EditUserDetailsPage(webOp, dataProvider);
+	}
+	
+}

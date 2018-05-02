@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraNegetiveScenarioHandler">
+	<test name="claraTest">
+		<classes>
+			<class name="com.bravadohealth.automation.clara.invalidscenario.LicenseErrorChecks" />
+		</classes>
+	</test>
+</suite>

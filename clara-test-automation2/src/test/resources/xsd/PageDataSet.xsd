@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bravadohealth.com/PageDataSet"
+	xmlns:tns="http://www.bravadohealth.com/PageDataSet"
+	elementFormDefault="qualified">
+
+
+	<element name="pageData">
+		<complexType>
+			<sequence>
+				<element name="login" type="tns:login" minOccurs="0"
+					maxOccurs="unbounded">
+				</element>
+				<element name="changePassword" type="tns:changePassword"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="editUserFields" type="tns:editUserFields"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="inviteUser" type="tns:inviteUser" minOccurs="0"
+					maxOccurs="unbounded">
+				</element>
+				<!-- Clara app -->
+				<element name="forgotCredential" type="tns:forgotCredential"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="patient" type="tns:patient" minOccurs="0"
+					maxOccurs="unbounded">
+				</element>
+				<element name="addPatientsData" type="tns:addPatientsData"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="manageExistingPatient" type="tns:manageExistingPatient"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="claraSubscription" type="tns:claraSubscription"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="claraUserDetails" type="tns:claraUserDetails"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="facility" type="tns:facility" minOccurs="0"
+					maxOccurs="unbounded">
+				</element>
+				<element name="manageFacilityDetails" type="tns:manageFacilityDetails"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="editFacilitySection" type="tns:editFacilitySection"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="licenseStatus" type="tns:licenseStatus"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="auditLogFilter" type="tns:auditLogFilter"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="permissionGroup" type="tns:permissionGroup"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="permissionGroups" type="tns:permissionGroups"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="institutionalPermissionGroups" type="tns:institutionalPermissionGroups"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+				<element name="permission" type="tns:permission"
+					minOccurs="0" maxOccurs="unbounded">
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<complexType name="auditLogFilter">
+		<sequence>
+		<element name="searchLog" type="tns:searchOption" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="startDate" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="endDate" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="showMyLog" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="matchingColumns" type="tns:auditRecordMatchingColumns" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="pharmacySearch">
+		<sequence>
+			<element name="new" type="tns:pharmacySearchDetails" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="existing" type="tns:pharmacySearchDetails" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="pharmacySearchDetails">
+		<sequence>
+			<element name="nearBy" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="zipCode" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="pharmacyName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="searchPerimeter" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="searchFilter" type="string" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="licenseStatus">
+		<sequence>
+			<element name="active" type="tns:active" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="pending" type="tns:pending" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="unassigned" type="tns:unAssigned" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="active">
+		<sequence>
+			<element name="removeUser" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="userNLicenseDetails" type="tns:userNLicenseDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="pending">
+		<sequence>
+			<element name="resend" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="cancelInvite" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="userNLicenseDetails" type="tns:userNLicenseDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="unAssigned">
+		<sequence>
+			<element name="assignLicense" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="userNLicenseDetails" type="tns:userNLicenseDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="userNLicenseDetails">
+		<sequence>
+			<element name="noOfLicenses" type="int" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="noOfLicensesToChange" type="int" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="userDetails" type="tns:userDetails" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="dateOfInvitation" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="cancel" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="manageFacilityDetails">
+		<sequence>
+			<element name="noOfFacility" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="facility" type="tns:facility" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="facility">
+		<sequence>
+			<element name="facilityOwner" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="facilityName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="address" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="city" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="state" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="zipCode" type="int" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="phone" type="long" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="faxNumber" type="long" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="email" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="facilityNPI" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="facilityDEA" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="Validate" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="identityProofing" type="tns:identityProofing" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="nominator" type="tns:nominator" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="altNominator" type="tns:nominator" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="timeZone" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="applyDST" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="idleLogoutTime" type="int"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="ftiNumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="nominator">
+		<sequence>
+			<element name="firstName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastName" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="emailAddress" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="editFacilitySection">
+		<sequence>
+			<element name="editFacility" type="tns:editFacility" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="editFacilitySettings" type="tns:editFacilitySettings" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="editFacility">
+		<sequence>
+			<element name="newFacilityName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="cancelChangeFacilityName" type="boolean"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="address" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="city" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="state" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="zipCode" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="phone" type="long" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="faxNumber" type="long" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="facilityNPI" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="facilityDEA" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="identityProofing" type="tns:identityProofing" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="nominator" type="tns:nominator" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="altNominator" type="tns:nominator" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="editFacilitySettings">
+		<sequence>
+			<element name="timeZone" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="applyDST" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="idleLogoutTime" type="int"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="ftiNumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="identityProofing">
+		<sequence>
+			<element name="institutional" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="individual" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="claraUserDetails">
+		<sequence>
+			<element name="email" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="password" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="firstname" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="middleName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="birthDay" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="address" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="city" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="state" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="zipCode" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="activationCode" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<!-- Extra details with license Type -->
+			<element name="licenseType" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="designation" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="mobileNumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="stateLicenseNumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="nPINumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dEANumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="nADEANumber" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="postCompetionAccountOperation" type="tns:postCompetionAccountOperation"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="postCompetionAccountOperation">
+		<sequence>
+			<element name="getStarted" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="addUser" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="manageExistingPatient">
+		<sequence>
+			<element name="deactivate" type="tns:deactivate" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="searchPatient" type="tns:searchOption"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="editDetails" type="tns:patientDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="deactivate">
+		<sequence>
+			<element name="deactivate" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="numberOfPatient" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+
+	<complexType name="searchOption">
+		<sequence>
+			<element name="searchText" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="searchField" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="searchFormat" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="auditRecordMatchingColumns">
+		<sequence>
+			<element name="timeStamp" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="action" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="userName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="drugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="patientName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="addPatientsData">
+		<sequence>
+			<element name="patients" type="tns:patient" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="patient">
+		<sequence>
+			<element name="ExistingPatient" type="tns:patientDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="NewPatient" type="tns:patientDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="addAnother" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="patientDetails">
+		<sequence>
+			<element name="demographic" type="tns:demographic" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="contact" type="tns:contact" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="medicalHistory" type="tns:medicalHistory"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="editDetails" type="tns:patientDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="pharmacyPageData" type="tns:pharmacyPageData"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="prescriptionsPageData" type="tns:prescriptionsPageData"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="authorizePrescriptionsPageData" type="tns:authorizePrescriptionsPageData"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="cancelChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<complexType name="pharmacyPageData">
+		<sequence>
+		<element name="pharmacySearch" type="tns:pharmacySearch" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="cancelChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="navigateAway" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="authorizePrescriptionsPageData">
+		<sequence>
+			<element name="editPrescriptions" type="tns:prescriptionsData" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="navigateAway" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="prescriptionsPageData">
+		<sequence>
+			<element name="editFullPatientData" type="tns:patientDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="prescriptionsData" type="tns:prescriptionsData"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="pediatricData" type="tns:pediatricData"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<complexType name="demographic">
+		<sequence>
+			<element name="firstName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="middleName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="address" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="city" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="state" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="zipCode" type="int" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="birthday" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="gender" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="weight" type="float" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="weightMeasuringUnit" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="nameSearchInput" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dobSearchInput" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="cancelChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="discardChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="duplicatePatientRecord" type="boolean"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="navigateAway" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="contact">
+		<sequence>
+			<element name="phone" type="long" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="email" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="medicalHistory">
+		<sequence>
+			<element name="allergies" type="tns:allergies" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="homeMeds" type="tns:homeMeds" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="diagnoses" type="tns:diagnoses" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="cancelChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="discardChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="navigateAway" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="diagnoses">
+		<sequence>
+			<element name="diagnosis" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="removeFromList" type="tns:removeFromList"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="allergies">
+		<sequence>
+			<element name="allergy" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="reaction" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dInteracnAlert" type="tns:dDInteracnAlert"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="removeFromList" type="tns:removeFromList"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="removeFromList">
+		<sequence>
+			<element name="remove" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="discontinue" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="error" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="homeMeds">
+		<sequence>
+			<element name="medication" type="tns:medication" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dInteracnAlert" type="tns:dDInteracnAlert"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="medication">
+		<sequence>
+			<element name="drugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dose" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="unit" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="frequency" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastTaken" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="removeFromList" type="tns:removeFromList"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="prescriptionsData">
+		<sequence>
+			<element name="prescription" type="tns:prescription"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="alternatePrescription" type="tns:prescription"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="cancelChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="navigateAway" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="prescription">
+		<sequence>
+			<element name="drugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dose" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="unit" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="doseUnitUid" type="long" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="frequency" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="duration" type="int" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="customSig" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="dispenseAmount" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="earliestFillDate" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="refills" type="int" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="substitutes" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="noteToPharmacy" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="favorite" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="isFavorite" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="delete" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="revert" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="add" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="controlledSubstance" type="tns:controlledSubstance"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="ddInteracnAlert" type="tns:dDInteracnAlert"
+				minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="ePrescribe" type="boolean"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="medEd" type="tns:medEd"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="medEd">
+		<sequence>
+			<element name="print" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="preview" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="controlledSubstance">
+		<sequence>
+			<element name="readyToSign" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="schedule2" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="schedule3N4" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="dDInteracnAlert">
+		<sequence>
+			<element name="response">
+				<simpleType>
+					<restriction base="string">
+						<pattern value="accept|ignore" />
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="reason" type="string" minOccurs="0" maxOccurs="unbounded">
+			</element>
+			<element name="alertType">
+				<simpleType>
+					<restriction base="string">
+						<pattern value="DrugDrug|DrugAllergy|DuplicateTherapy" />
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="drugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="allergyName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="prescriptionDrugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="homeMedDrugName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="pediatricData">
+		<sequence>
+			<element name="weight" type="int" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="weightMeasuringUnit" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="forgotCredential">
+		<sequence>
+			<element name="forgotPassword" type="tns:forgotPasswordDetails"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="forgotClaraID" type="tns:forgotClaraID"
+				minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="forgotPasswordDetails">
+		<sequence>
+			<element name="claraUserId" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="forgotClaraID">
+		<sequence>
+			<element name="firstName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastname" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="emailAddress" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="inviteUser">
+		<sequence>
+			<element name="userDetails" type="tns:userDetails" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+			<element name="clearAll" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="userDetails">
+		<sequence>
+			<element name="clear" type="boolean" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="emailId" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="firstName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastname" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="role" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+
+	<complexType name="editUserFields">
+		<sequence>
+			<element name="firstName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="middleName" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="lastname" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="officeLocation" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="department" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="emailIdChangeCancel" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="emailIdChange" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="newMailAddress" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="activationCode" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="resendActivationCode" type="boolean"
+				minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="saveChanges" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<!-- Clara releted data -->
+			<element name="birthDate" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="role" type="string" minOccurs="0" maxOccurs="1">
+			</element>
+			<!-- -->
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="changePassword">
+		<sequence>
+			<element name="cancel" type="boolean" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="currentPassword" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="newPassword" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="confirmPassword" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+
+	<complexType name="login">
+		<sequence>
+			<element name="userName" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="password" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+			<element name="attemptsAllowed" type="string" minOccurs="1"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="claraSubscription">
+		<sequence>
+			<element name="selectPlanData" type="tns:selectPlan"
+				minOccurs="0" maxOccurs="1" />
+			<element name="customizePlanData" type="tns:customizePlan"
+				minOccurs="0" maxOccurs="1" />
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="selectPlan">
+		<sequence>
+			<element name="planFrequency">
+				<simpleType>
+					<restriction base="string">
+						<pattern value="monthly|annual" />
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="planType">
+				<simpleType>
+					<restriction base="string">
+						<pattern value="Pro|ProCS" />
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+	<complexType name="customizePlan">
+		<sequence>
+			<element name="proCSUsers" type="int" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="proUsers" type="int" minOccurs="0" maxOccurs="1">
+			</element>
+			<element name="basicUsers" type="int" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="medicationEducation" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="permission">
+		<sequence>
+			<element name="permissionName" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="permissionDescription" type="string" minOccurs="1" maxOccurs="1" />
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="permissionGroup">
+		<sequence>
+			<element name="groupHeader" type="string" minOccurs="1" maxOccurs="1" />
+			<element name="permission" type="tns:permission" minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="permissionGroups">
+		<sequence>
+			<element name="permissionGroup" type="tns:permissionGroup" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+	
+	<complexType name="institutionalPermissionGroups">
+		<sequence>
+			<element name="permissionGroup" type="tns:permissionGroup" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="id" type="ID"></attribute>
+	</complexType>
+
+</schema>

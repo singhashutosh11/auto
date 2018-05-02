@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraScenarioHandler">
+<!-- <suite name="ClaraScenarioHandler" thread-count="1"> -->
+	<test name="ClaraScenarioHandler">
+		<classes>
+	<!-- 	<class
+				name="com.bravadohealth.automation.clara.validscenario.EditFullPatient" />
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.ManagePatientDeactivate" />
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.ManagePatientSearchNEdit" />
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.searchPatient" /> -->
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.CheckACLTextAndDescription" />
+		</classes>
+	</test>
+</suite>

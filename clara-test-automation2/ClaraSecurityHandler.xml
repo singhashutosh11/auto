@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraSecurityHandler">
+	<test name="ClaraSecurityHandler">
+		<classes>
+			<class name="com.bravadohealth.automation.clara.validscenario.ForgotClaraID" />
+			<class name="com.bravadohealth.automation.clara.validscenario.LogInToClara" />
+			<class name="com.bravadohealth.automation.clara.security.DuplicateSession" />
+ 			<class name="com.bravadohealth.automation.clara.validscenario.SignOutOfClara" />
+  			<class name="com.bravadohealth.automation.clara.validscenario.AutoLogout" />
+ 			<class name="com.bravadohealth.automation.clara.validscenario.ForgotClaraPassword" />
+			<class name="com.bravadohealth.automation.clara.validscenario.ChangePassword" />
+
+		</classes>
+	</test>
+</suite>
