@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraFacilityHandler">
+	<test name="ClaraFacilityHandler">
+		<classes>
+			<class name="com.bravadohealth.automation.clara.validscenario.CheckACLTextAndDescription" />
+			<class name="com.bravadohealth.automation.clara.validscenario.ManageFacility" />
+			<class name="com.bravadohealth.automation.clara.validscenario.VerifyFacilitySectionsOnEdit" />
+			<class name="com.bravadohealth.automation.clara.invalidscenario.UpdateFacility" />	
+		</classes>
+	</test>
+</suite>

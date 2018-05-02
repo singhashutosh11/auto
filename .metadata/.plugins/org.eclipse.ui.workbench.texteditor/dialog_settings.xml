@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="" key="selection"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="//div[contains(@class,&apos;homemeds-section scrollable&apos;)]"/>
+			<item value="saveChangesButtonLocator"/>
+			<item value="accountMenuLocator"/>
+			<item value="&#x09;&#x09;if (webOp.driver().findElements(AuditTrailLocator).isEmpty()) {&#x09;&#x09;&#x09;"/>
+			<item value="isDisplayed"/>
+			<item value="loginDataSetSiddharthGolchha"/>
+			<item value="umang"/>
+			<item value="WritePrescriptionsPage"/>
+			<item value="VISIBILITY"/>
+			<item value="groupHeaderElValue"/>
+			<item value="permissionGroupPrescribingForInstitutionalSettingFacility"/>
+			<item value="permissionElements"/>
+			<item value="FacilityUserWithIndividualIDProofingSetting"/>
+			<item value="count"/>
+			<item value="permissionGroupPrescribing"/>
+		</list>
+		<list key="replacehistory">
+			<item value="PrescriptionWithSuervisorPage"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="284" key="DIALOG_WIDTH"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<item value="294" key="DIALOG_HEIGHT"/>
+		<item value="913" key="DIALOG_X_ORIGIN"/>
+		<item value="214" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

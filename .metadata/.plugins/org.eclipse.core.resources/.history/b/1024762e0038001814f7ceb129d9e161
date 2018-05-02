@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<suite name="ClaraPrescriptionHandler">
+	<test name="ClaraPrescriptionHandler" parallel="false">
+		<classes>
+			<!-- <class
+				name="com.bravadohealth.automation.clara.validscenario.AuthorizePrescriptionClara" />
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.VerifyPrescriptionInteraction" /> -->
+			<class
+				name="com.bravadohealth.automation.clara.validscenario.WritePrescriptionClara" />
+		</classes>
+	</test>
+</suite>

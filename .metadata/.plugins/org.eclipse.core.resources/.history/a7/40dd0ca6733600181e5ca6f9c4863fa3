@@ -1,0 +1,22 @@
+package com.bravadohealth.clara1.pageObjects.locators;
+
+import org.openqa.selenium.By;
+
+public interface NavLocators {
+    
+    By signInLinkLocator = By.xpath("//a[@href='#!/login']");
+    By meetClaraLinkLocator = By.xpath("//a[@href='#!/create-claraid']");
+    By learnMoreLinkLocator = By.xpath("//a[@href='#!/learnmore']");
+    By patientsLinkLocator = By.xpath("//a[@href='#!/app/patients']");
+    
+	//By accountMenuLocator = By.id("gn-link-account");
+	By accountMenuLocator = By.xpath("//span[contains(@class,'gn-text ng-binding') and text()='Account']");
+    By accountLinkLocator = By.xpath("//a[@href='#!/app/account']");
+	By signOutLocator = By.xpath("//span[contains(@class,'gn-text') and text()='Sign Out']");
+	By AuditTrailLocator=By.xpath("//a[span[text()='Audit Trail']]");
+    /*
+    By signInLinkLocator = By.xpath("//a[@href='/acorn-vale-03457798624180578193/']");
+    By meetClaraLinkLocator = By.xpath("//a[@href='/acorn-vale-03457798624180578193/meetclara/]");
+    By learnMoreLinkLocator = By.xpath("//a[@href='/acorn-vale-03457798624180578193/learnmore/claraid-faq.php']");
+    */
+}
